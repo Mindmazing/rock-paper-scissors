@@ -1,6 +1,6 @@
 # rock-paper-scissors
 
-The purpose ofr this project is to start creating with javascript.
+The purpose of this project is to start creating with javascript.
 
 The project is a clone of rock paper scissors with all the functionality that the original game has.
 
