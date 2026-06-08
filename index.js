@@ -129,7 +129,13 @@ function playGame(humanChoice) {
   // show computer choice
   changeCardImage(computerSelection, computerCard);
   playRound(humanChoice, computerSelection);
-  buttons.forEach((button) => {
-    button.disabled = false;
-  });
+  if (humanScore === 5 && humanScore > computerScore) {
+    showGame("You Win. Long live Humans!");
+  } else if (computerScore === 5 && computerScore > humanScore) {
+    showGame("You Lose. Computer Wins!");
+  } else {
+    buttons.forEach((button) => {
+      button.disabled = false;
+    });
+  }
 }
