@@ -23,6 +23,8 @@ const buttons = document.querySelectorAll("button");
 const humanCard = document.querySelector("#human-card");
 const computerCard = document.querySelector("#computer-card");
 const gameTitle = document.querySelector("#game-title");
+const humanScoreBoard = document.querySelector("#human-score");
+const ComputerScoreBoard = document.querySelector("#computer-score");
 
 function changeCardImage(choice, target) {
   switch (choice) {
@@ -57,8 +59,10 @@ gameButtons.addEventListener("click", (event) => {
   });
 });
 
-function incrementPoint(winner) {
-  return winner + 1;
+function incrementPoint(winner, target) {
+  let updatedScore = winner + 1;
+  target.innerText = updatedScore;
+  return updatedScore;
 }
 
 function showGame(text) {
@@ -72,38 +76,36 @@ function playRound(humanChoice, computerChoice) {
     switch (computerChoice) {
       case "rock":
         showGame("Rock beats Scissors. YOU LOSE!");
-        computerScore = incrementPoint(computerScore);
+        computerScore = incrementPoint(computerScore, ComputerScoreBoard);
         break;
       case "paper":
         showGame("Scissors beats Paper. YOU WIN!");
-        humanScore = incrementPoint(humanScore);
+        humanScore = incrementPoint(humanScore, humanScoreBoard);
         break;
     }
   } else if (humanChoice === "rock") {
     switch (computerChoice) {
       case "scissors":
         showGame("Rock beats Scissors. YOU WIN!");
-        humanScore = incrementPoint(computerScore);
+        humanScore = incrementPoint(humanScore, humanScoreBoard);
         break;
       case "paper":
         showGame("Paper beats Rock. YOU LOSE!");
-        computerScore = incrementPoint(humanScore);
+        computerScore = incrementPoint(computerScore, ComputerScoreBoard);
         break;
     }
   } else {
     switch (computerChoice) {
       case "rock":
         showGame("Paper beats Rock. YOU WIN!");
-        humanScore = incrementPoint(computerScore);
+        humanScore = incrementPoint(humanScore, humanScoreBoard);
         break;
       case "scissors":
         showGame("Scissors beats paper. YOU LOSE!");
-        computerScore = incrementPoint(humanScore);
+        computerScore = incrementPoint(computerScore, ComputerScoreBoard);
         break;
     }
   }
-  console.log(`Your Score: ${humanScore}`);
-  console.log(`Computer Score: ${computerScore}`);
 }
 
 function playGame(humanChoice) {
