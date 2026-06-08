@@ -19,6 +19,7 @@ let rounds = 0;
 
 // get human choice via buttons
 const gameButtons = document.querySelector("#game-controls");
+const buttons = document.querySelectorAll("button");
 const humanCard = document.querySelector("#human-card");
 const computerCard = document.querySelector("#computer-card");
 const gameTitle = document.querySelector("#game-title");
@@ -43,7 +44,12 @@ function changeCardImage(choice, target) {
 gameButtons.addEventListener("click", (event) => {
   let humanChoice = event.target.id;
   changeCardImage(humanChoice, humanCard);
-  playGame(humanChoice);
+  setTimeout(() => {
+    playGame(humanChoice);
+  }, 3000);
+  buttons.forEach((button) => {
+    button.disabled = true;
+  });
 });
 
 function incrementPoint(winner) {
@@ -51,11 +57,11 @@ function incrementPoint(winner) {
 }
 
 function showGame(computerChoice) {
+  gameTitle.innerTe;
   console.log(`Computer Played: ${computerChoice}`);
 }
 
 function playRound(humanChoice, computerChoice) {
-  showGame(computerChoice);
   if (computerChoice === humanChoice) {
     console.log("TIE");
   } else if (humanChoice === "scissors") {
@@ -98,5 +104,10 @@ function playRound(humanChoice, computerChoice) {
 
 function playGame(humanChoice) {
   const computerSelection = getComputerChoice();
+  // show computer choice
+  changeCardImage(computerSelection, computerCard);
   playRound(humanChoice, computerSelection);
+  buttons.forEach((button) => {
+    button.disabled = false;
+  });
 }
