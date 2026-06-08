@@ -42,11 +42,16 @@ function changeCardImage(choice, target) {
 }
 
 gameButtons.addEventListener("click", (event) => {
+  // reset game
+  showGame("Rock, Paper, Scissors");
+  computerCard.innerHTML = "";
+
   let humanChoice = event.target.id;
   changeCardImage(humanChoice, humanCard);
   setTimeout(() => {
     playGame(humanChoice);
   }, 3000);
+  // disable buttons to prevent repetition
   buttons.forEach((button) => {
     button.disabled = true;
   });
@@ -56,29 +61,28 @@ function incrementPoint(winner) {
   return winner + 1;
 }
 
-function showGame(computerChoice) {
-  gameTitle.innerTe;
-  console.log(`Computer Played: ${computerChoice}`);
+function showGame(text) {
+  gameTitle.innerText = text;
 }
 
 function playRound(humanChoice, computerChoice) {
   if (computerChoice === humanChoice) {
-    console.log("TIE");
+    showGame("TIE!");
   } else if (humanChoice === "scissors") {
     switch (computerChoice) {
       case "rock":
-        console.log("Rock beats Scissors. YOU LOSE!");
+        showGame("Rock beats Scissors. YOU LOSE!");
         computerScore = incrementPoint(computerScore);
         break;
       case "paper":
-        console.log("Scissors beats Rock. YOU WIN!");
+        showGame("Scissors beats Rock. YOU WIN!");
         humanScore = incrementPoint(humanScore);
         break;
     }
   } else if (humanChoice === "rock") {
     switch (computerChoice) {
       case "scissors":
-        console.log("Rock beats Scissors. YOU WIN!");
+        showGame("Rock beats Scissors. YOU WIN!");
         humanScore = incrementPoint(computerScore);
         break;
       case "paper":
