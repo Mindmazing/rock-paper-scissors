@@ -25,6 +25,7 @@ const computerCard = document.querySelector("#computer-card");
 const gameTitle = document.querySelector("#game-title");
 const humanScoreBoard = document.querySelector("#human-score");
 const ComputerScoreBoard = document.querySelector("#computer-score");
+const countdownElement = document.querySelector("#vrs-tag");
 
 function changeCardImage(choice, target) {
   switch (choice) {
@@ -50,6 +51,21 @@ gameButtons.addEventListener("click", (event) => {
 
   let humanChoice = event.target.id;
   changeCardImage(humanChoice, humanCard);
+
+  // set timer interval
+  timer = 3;
+  countdownElement.innerText = timer;
+  let countdownInterval = setInterval(() => {
+    timer--;
+
+    countdownElement.innerText = timer;
+    if (timer === 0) {
+      countdownElement.innerText = "Vrs";
+
+      clearInterval(countdownInterval);
+    }
+  }, 1000);
+
   setTimeout(() => {
     playGame(humanChoice);
   }, 3000);
