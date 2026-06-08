@@ -12,14 +12,39 @@ function getComputerChoice() {
       break;
   }
 }
-
-function getHumanChoice() {
-  let choice = prompt("Choose: Rock, Paper or Scissors");
-  return choice.toLowerCase();
-}
-
+// scores
 let humanScore = 0;
 let computerScore = 0;
+let rounds = 0;
+
+// get human choice via buttons
+const gameButtons = document.querySelector("#game-controls");
+const humanCard = document.querySelector("#human-card");
+const computerCard = document.querySelector("#computer-card");
+const gameTitle = document.querySelector("#game-title");
+
+function changeCardImage(choice, target) {
+  switch (choice) {
+    case "rock":
+      target.innerHTML =
+        '<img src="./images/cartoon-rock.png" alt="Rock" class="card-img" />';
+      break;
+    case "paper":
+      target.innerHTML =
+        '<img src="./images/cartoon-paper.png" alt="Paper" class="card-img" />';
+      break;
+    case "scissors":
+      target.innerHTML =
+        '<img src="./images/cartoon-scissors.png" alt="Scissors" class="card-img" />';
+      break;
+  }
+}
+
+gameButtons.addEventListener("click", (event) => {
+  let humanChoice = event.target.id;
+  changeCardImage(humanChoice, humanCard);
+  playGame(humanChoice);
+});
 
 function incrementPoint(winner) {
   return winner + 1;
@@ -71,9 +96,7 @@ function playRound(humanChoice, computerChoice) {
   console.log(`Computer Score: ${computerScore}`);
 }
 
-function playGame() {
-  const humanSelection = getHumanChoice();
+function playGame(humanChoice) {
   const computerSelection = getComputerChoice();
-
-  playRound(humanSelection, computerSelection);
+  playRound(humanChoice, computerSelection);
 }
