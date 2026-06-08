@@ -75,7 +75,7 @@ function playRound(humanChoice, computerChoice) {
         computerScore = incrementPoint(computerScore);
         break;
       case "paper":
-        showGame("Scissors beats Rock. YOU WIN!");
+        showGame("Scissors beats Paper. YOU WIN!");
         humanScore = incrementPoint(humanScore);
         break;
     }
@@ -86,18 +86,18 @@ function playRound(humanChoice, computerChoice) {
         humanScore = incrementPoint(computerScore);
         break;
       case "paper":
-        console.log("Paper beats Rock. YOU LOSE!");
+        showGame("Paper beats Rock. YOU LOSE!");
         computerScore = incrementPoint(humanScore);
         break;
     }
   } else {
     switch (computerChoice) {
       case "rock":
-        console.log("Paper beats rock. YOU WIN!");
+        showGame("Paper beats Rock. YOU WIN!");
         humanScore = incrementPoint(computerScore);
         break;
       case "scissors":
-        console.log("Scissors beats paper. YOU LOSE!");
+        showGame("Scissors beats paper. YOU LOSE!");
         computerScore = incrementPoint(humanScore);
         break;
     }
